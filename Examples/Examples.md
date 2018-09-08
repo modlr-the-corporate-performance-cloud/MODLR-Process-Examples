@@ -9,8 +9,35 @@
 * Handlebars page templating example
 
 
-
 ## Quick Samples
+
+### Notification Samples
+Sending an email or SMS message to users is trivial using the notification functions built into MODLR.
+
+#### Sending an Email to a User
+This example sends an email to the user running the process. The subject line reads "Hello". 
+```javascript
+
+//get the current users email (the email of the user who is running this process or accessing this webpage.
+var user_email = security.currentUserEmail();
+
+//send a basic email message to that user.
+notifications.email(user_email, "no-reply@modlr.co", "Hello", "Hello User");
+
+```
+* Note: The email is HTML formatted. *
+
+
+#### Sending an SMS to a User
+```javascript
+
+//get the current users id (the identifier of the user who is running this process or accessing this webpage.
+var userId = security.currentUserId();
+
+//send a basic sms message to that user.
+notifications.sms(userId, "Hello. This is a test SMS");
+
+```
 
 
 ### Dimension Samples
