@@ -25,7 +25,7 @@ var user_email = security.currentUserEmail();
 notifications.email(user_email, "no-reply@modlr.co", "Hello", "Hello User");
 
 ```
-* Note: The email is HTML formatted. *
+Note: The email is HTML formatted.
 
 
 #### Sending an SMS to a User
@@ -79,5 +79,44 @@ hierarchy.group(dimName,"Default","All Elements","Child Element 01");
 hierarchy.group(dimName,"Default","All Elements","Child Element 02");
 
 ```
-*Note: There is no need to wipe the hierarchy as it will be wiped by the dimension wipe call.*
+This creates the following hierarchy.
+- All Elements
+	- Child Element 01
+	- Child Element 02
+
+Note: There is no need to wipe the hierarchy as it will be wiped by the dimension wipe call.
+
+
+#### Creating a Multi-level Hierarch
+```javascript
+
+//reset the hierarchy
+hierarchy.wipe(dimName,"Default");
+
+hierarchy.structure(dimName,"Default","EBITDA","Net Sales");
+hierarchy.structure(dimName,"Default","EBITDA","Operating Expenditure");
+
+hierarchy.group(dimName,"Default","Net Sales","Gross Sales");
+hierarchy.group(dimName,"Default","Net Sales","Cost of Goods Sold");
+
+hierarchy.group(dimName,"Default","Operating Expenditure","General Expenses");
+hierarchy.group(dimName,"Default","Operating Expenditure","Office Expenses");
+hierarchy.group(dimName,"Default","Operating Expenditure","Salaries and Remuneration");
+hierarchy.group(dimName,"Default","Operating Expenditure","Travel");
+
+```
+This creates the following hierarchy.
+- EBITDA
+	- Net Sales
+		- Gross Sales
+		- Cost of Goods Sold
+	- Operating Expenditure
+		- General Expenses
+		- Office Expenses
+		- Salaries and Remuneration
+		- Travel
+
+The different functions hierarchy.group and hierarhcy.structure denote the format of the child element. 
+- hierarchy.group is used when the child element is a N-Level (a child without children which can hold data). 
+- hierarchy.structure is used when adding more structure to the hierarchy (elements which hold other elements as children).
 
