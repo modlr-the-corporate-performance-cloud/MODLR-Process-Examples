@@ -12,7 +12,11 @@
 
 ## Quick Samples
 
-** Creating a Standard Dimension if it doesn't exist **
+
+### Dimension Samples
+Most processes which import data will also need to create or maintain dimensions.
+
+#### Creating a Standard Dimension if it doesn't exist
 ```javascript
 
 if( !dimension.exists(dimName) ) {
@@ -21,7 +25,7 @@ if( !dimension.exists(dimName) ) {
 
 ```
 
-** Creating a Standard Dimension if it doesn't exist (and wiping it if it does exist) **
+#### Creating a Standard Dimension if it doesn't exist (and wiping it if it does exist)
 ```javascript
 
 if( !dimension.exists(dimName) ) {
@@ -32,7 +36,7 @@ if( !dimension.exists(dimName) ) {
 
 ```
 
-** Creating a New Dimension and a Default Hierarchy **
+#### Creating a New Dimension and a Default Hierarchy
 ```javascript
 
 if( !dimension.exists(dimName) ) {

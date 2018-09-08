@@ -73,7 +73,7 @@ function begin() {
 
 	//create the slice
 	var slice = cube.slice(cube_name,elements);
-     while( !slice.EOF() ) {
+    while( !slice.EOF() ) {
      	//get the next cell from the slice
           var elms = slice.Next();
 
@@ -89,11 +89,11 @@ function begin() {
 
 		//get the value from the slice (the last item in the slice array).
 		var value = elms[elms.length-1];
-          if ( value ){ //check that the value is not null.
+        if ( value ){ //check that the value is not null.
           	//set the value in the destination scenario to the same from the source
           	cube.set(value,cube_name,elmsSet);	
-          }
-     }
+        }
+    }
 }
 
 function data(record) {
