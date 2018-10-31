@@ -41,14 +41,14 @@ function begin() {
 	
 	//abort if the from scenario doesnt exist
 	var scenarioDim = dims[scenarioPosititon];
-	if( element.exists(scenarioDim.id,scenario_from) ) {
+	if( element.exists(scenarioDim.id,scenario_from)  == false ) {
 		script.abort("Could not find the Scenario: "+scenario_from+" within the scenario dimension: " + scenarioDim.name + ".");
 		return;
 	}
 	
 	//abort if the to scenario doesnt exist
 	var scenarioDim = dims[scenarioPosititon];
-	if( element.exists(scenarioDim.id,scenario_to) ) {
+	if( element.exists(scenarioDim.id,scenario_to) == false  ) {
 		script.abort("Could not find the Scenario: "+scenario_to+" within the scenario dimension: " + scenarioDim.name + ".");
 		return;
 	}
