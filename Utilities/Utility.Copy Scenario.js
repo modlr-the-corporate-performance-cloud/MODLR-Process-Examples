@@ -1,4 +1,3 @@
-
 function pre() {
 	//this function is called once before the processes is executed.
 	//Use this to setup prompts.
@@ -41,14 +40,14 @@ function begin() {
 	
 	//abort if the from scenario doesnt exist
 	var scenarioDim = dims[scenarioPosititon];
-	if( element.exists(scenarioDim.id,scenario_from)  == false ) {
+	if( element.exists(scenarioDim.name,scenario_from) == false ) {
 		script.abort("Could not find the Scenario: "+scenario_from+" within the scenario dimension: " + scenarioDim.name + ".");
 		return;
 	}
 	
 	//abort if the to scenario doesnt exist
 	var scenarioDim = dims[scenarioPosititon];
-	if( element.exists(scenarioDim.id,scenario_to) == false  ) {
+	if( element.exists(scenarioDim.name,scenario_to) == false ) {
 		script.abort("Could not find the Scenario: "+scenario_to+" within the scenario dimension: " + scenarioDim.name + ".");
 		return;
 	}
@@ -71,6 +70,9 @@ function begin() {
 	//change the element list to from slice options
 	elements[scenarioPosititon] = scenario_from;
 
+	//turn cube logging off (as it is unnecessary)
+	cube.log(cube_name,false);
+	
 	//create the slice
 	var slice = cube.slice(cube_name,elements);
     while( !slice.EOF() ) {
@@ -94,6 +96,9 @@ function begin() {
           	cube.set(value,cube_name,elmsSet);	
         }
     }
+	
+	//turn cube logging back on
+	cube.log(cube_name,true);
 }
 
 function data(record) {
@@ -106,4 +111,3 @@ function end() {
 	//this function is called once at the end of the process
 	script.log('process execution finished.');
 }
-
