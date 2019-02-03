@@ -14,7 +14,6 @@ cube.formulaEvaluation(cubeName, bApply);
 ## Cube Audit Logging
 Data changes to cells within a cube are logged by default. This has a performance overhead and can be disabled for bulk data loading.
 
-**
 ```javascript
 var bLog = cube.log(cubeName);
 cube.log(cubeName,bLog);
