@@ -12,4 +12,5 @@ Utility processes can be copied into new Processes so that you can call them fro
 Process examples serve to teach common development patterns which are handy when working with MODLR.
 
 [Process and Script Examples](/Examples/Examples.md)
+[Process Performance Tuning](/Examples/Performance Tuning.md)
 
