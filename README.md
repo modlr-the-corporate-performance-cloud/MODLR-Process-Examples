@@ -15,3 +15,4 @@ Process examples serve to teach common development patterns which are handy when
 
 [Process Performance Tuning](/Examples/Performance-Tuning.md)
 
+[Process for Setting Model Variables](/Examples/Setting-Variables.md)
