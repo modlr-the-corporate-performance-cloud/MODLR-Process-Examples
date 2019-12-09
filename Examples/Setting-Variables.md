@@ -9,6 +9,9 @@ Create a custom process script and under the `pre()` function, prompt the user f
 
 ```javascript
 function pre() {
+    //this function is called once before the processes is executed.
+    //Use this to setup prompts.
+	
     const monthNames = [
     	'Jan',
     	'Feb',
@@ -23,12 +26,9 @@ function pre() {
     	'Nov',
     	'Dec'
     ];
-
-    //this function is called once before the processes is executed.
-    //Use this to setup prompts.
     const now = new Date(Date.now());
-    const monthNow = monthNames[now.getMonth()];
-    const yearNow = now.getFullYear().toString();
+    const monthNow = monthNames[now.getMonth()]; // Default month
+    const yearNow = now.getFullYear().toString(); // Default year
     script.prompt('Month.Current Month', 'currentMonth', monthNow);
     script.prompt('Year.Current Year', 'currentYear', yearNow);
     
