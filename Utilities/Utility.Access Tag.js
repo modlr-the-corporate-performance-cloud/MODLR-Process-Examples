@@ -51,10 +51,15 @@ function begin() {
         return;
     }
 
-    console.log(rOrW);
-
     if(rOrW == null || rOrW == "Access (W or R)") {
         console.log("Please provide a valid access.");
+        return;
+    }
+
+    if( rOrW == "W" || rOrW == "R" || rOrW == "N"){
+
+    } else {
+        console.log("Please provide a valid access mode. This needs to be R (Read), W (Write) or N (None)");
         return;
     }
 
