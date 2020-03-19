@@ -8,6 +8,8 @@ function pre() {
     script.prompt("Scenario To","scenario_to","");
     script.prompt("Measures List","measures_list","");
     script.prompt("Wipe Destination","should_wipe","1");
+    script.prompt("Dimension Filter","dimension_filter","");
+    script.prompt("Element Filter","element_filter","");
 }
 
 
@@ -38,6 +40,23 @@ function begin() {
         return;
     }
 
+    var dimFilterPosition = -1;
+    if( dimension_filter.trim() !== "" ) {
+        for(var i=0;i<dims.length;i++) {
+            var dim = dims[i];
+            if( dim.name == dimension_filter ) { 
+                dimFilterPosition = i;
+                break;
+            }
+        }
+    }
+
+    //abort if we can not find the scenario dimension.
+    if( dimension_filter.trim() !== "" && dimFilterPosition == -1 ) {
+        script.abort("Could not find the " + dimension_filter + " dimension within the target cube.");
+        return;
+    }
+
     //abort if the from scenario doesnt exist
     var scenarioDim = dims[scenarioPosititon];
     if( element.exists(scenarioDim.name,scenario_from) == false ) {
@@ -58,6 +77,8 @@ function begin() {
         for(var i=0;i<dims.length;i++) {
             if( i == scenarioPosititon ) {
                 elements.push(scenario_to);    //add the destination scenario for clearing
+            } else if( i == dimFilterPosition ) {
+                elements.push(element_filter);    //add the destination dimension filter for clearing
             } else if( i == dims.length-1 ) {
                 elements.push(measures_list); //add the measures list
             } else {
@@ -84,6 +105,8 @@ function begin() {
         for(var i=0;i<elms.length-1;i++){
             if( i == scenarioPosititon ) {    //ensure that we are "looking at" the destination scenario
                 elmsSet.push(scenario_to);
+            } else if( i == dimFilterPosition ) {
+                elmsSet.push(element_filter);    //add the dimension filter with element
             } else {
                 elmsSet.push(elms[i]);        //otherwise we are looking at the same elements as the slice
             }
