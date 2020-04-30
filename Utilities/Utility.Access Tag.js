@@ -4,18 +4,20 @@ var hier = null;
 var elm = null;
 var accTag = null;
 var rOrW = null;
+var consoleROrW = null;
 
 function pre() {
 	//this function is called once before the processes is executed.
 	//Use this to setup prompts.
 	script.log('process pre-execution parameters parsed.');
 
-    appId = script.prompt("Application ID","appId","App ID");
-    dim = script.prompt("Dimension","dim","Input Dimension");
-    hier = script.prompt("Hierarchy","hier","Input Hierarchy");
-    elm = script.prompt("Parent Element","elm","Input Parent Element");
-    accTag = script.prompt("Access Tag","accTag","TagName");
-    rOrW = script.prompt("Access","rOrW","Access (W or R)");
+    script.prompt("Application ID","appId","App ID");
+    script.prompt("Dimension","dim","Input Dimension");
+    script.prompt("Hierarchy","hier","Input Hierarchy");
+    script.prompt("Parent Element","elm","Input Parent Element");
+    script.prompt("Access Tag","accTag","TagName");
+    script.prompt("Access","rOrW","R");
+    script.prompt("Consolidation Access","consoleROrW","R");
 }
 
 function begin() {
@@ -55,6 +57,12 @@ function begin() {
         console.log("Please provide a valid access.");
         return;
     }
+    if(consoleROrW == null || consoleROrW == "Access (W or R)") {
+        console.log("Please provide a valid access.");
+        return;
+    }
+    
+
 
     if( rOrW == "W" || rOrW == "R" || rOrW == "N"){
 
@@ -62,6 +70,14 @@ function begin() {
         console.log("Please provide a valid access mode. This needs to be R (Read), W (Write) or N (None)");
         return;
     }
+
+    if( consoleROrW == "W" || consoleROrW == "R" || consoleROrW == "N"){
+
+    } else {
+        console.log("Please provide a valid consolidation access mode. This needs to be R (Read), W (Write) or N (None)");
+        return;
+    }
+    
 
     // Check Dim exists
     if(!dimension.exists(dim)) {
@@ -84,19 +100,26 @@ function begin() {
     }
 
     // Add Access For First Elm
-    var boolean = security.applicationAddTagElementSecurity(appId, accTag, elm, rOrW);
+    var boolean = security.applicationAddTagElementSecurity(appId, accTag, elm, consoleROrW);
     console.log("Updated " + elm + " to access: " + rOrW);
-    hasChildrenLoop(dim, hier, elm, appId, accTag, rOrW);
+    hasChildrenLoop(dim, hier, elm, appId, accTag, rOrW, consoleROrW);
 }
 
-function hasChildrenLoop(dim, hier, elm, appId, accTag, rOrW) {
+function hasChildrenLoop(dim, hier, elm, appId, accTag, rOrW, consoleROrW) {
     var children = hierarchy.childCount(dim, hier, elm);
     if(children > 0) {
         for(var i = 0; i < children; i++) {
             var child = hierarchy.childByIndex(dim, hier, elm, i);
-            security.applicationAddTagElementSecurity(appId, accTag, child, rOrW);
-            console.log("Updated " + child + " to access: " + rOrW);
-            hasChildrenLoop(dim, hier, child, appId, accTag, rOrW);
+            var childChildren = hierarchy.childCount(dim, hier, child) +"";
+            
+            if( childChildren.indexOf('Error') > -1 || childChildren == "0") {
+                security.applicationAddTagElementSecurity(appId, accTag, child, rOrW);
+                console.log("Updated " + child + " to access: " + rOrW);
+            } else {
+                security.applicationAddTagElementSecurity(appId, accTag, child, consoleROrW);
+                console.log("Updated " + child + " to access: " + consoleROrW);
+                hasChildrenLoop(dim, hier, child, appId, accTag, rOrW, consoleROrW);
+            }
         }
     }
 }
