@@ -1,7 +1,60 @@
 # FTP Functions Usage Example
 
-```javascript
+**NOTE**: FTP functions are available starting with Build 2.4.524.
 
+First, we need to establish an FTP connection. Using a username and password:
+
+```javascript
+const client = ftp.Connect("sftp", "example.domain.com", 22, "janedoe", "mypassword");
+```
+
+If you need a keyfile to connect to the FTP server, use `ftp.ConnectWithKey()`:
+
+```javascript
+const client = ftp.Connect("sftp", "example.domain.com", 22, "abby", "/path/to/key_file");
+```
+
+To check if the connection succeeded, use the `IsConnected()` method:
+
+```javascript
+if (client.IsConnected()) {
+	console.log("We're connected.");
+} else {
+	console.log("Connection failed.");
+}
+```
+
+When connected, you can then get a list of files and directories in your FTP server.
+
+
+```javascript
+const list = JSON.parse(client.Directory('/remote/path'));
+```
+
+The method `Directory()` returns a JSON string representing an array of files and folders and looks like the following:
+
+```json
+[
+    {
+        "name": "a_folder",
+        "isDirectory": true
+    },
+    {
+        "name": "pub",
+        "isDirectory": true
+    },
+    {
+        "name": "readme.txt",
+        "isDirectory": false
+    }
+]
+```
+
+Below is a sample process demonstrating what you can do with the new FTP features. To learn more about them, head over to the [MODLR documentation](https://docs.modlr.co/process-functions#ftp-functions).
+
+## Sample Process Usage
+
+```javascript
 const remoteFolder = '/root/';
 
 function pre() {
