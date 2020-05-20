@@ -11,7 +11,7 @@ const client = ftp.Connect("sftp", "example.domain.com", 22, "janedoe", "mypassw
 If you need a keyfile to connect to the FTP server, use `ftp.ConnectWithKey()`:
 
 ```javascript
-const client = ftp.Connect("sftp", "example.domain.com", 22, "abby", "/path/to/key_file");
+const client = ftp.ConnectWithKey("sftp", "example.domain.com", 22, "abby", "/path/to/key_file");
 ```
 
 To check if the connection succeeded, use the `IsConnected()` method:
