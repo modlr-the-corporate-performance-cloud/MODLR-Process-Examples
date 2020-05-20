@@ -18,9 +18,9 @@ To check if the connection succeeded, use the `IsConnected()` method:
 
 ```javascript
 if (client.IsConnected()) {
-	console.log("We're connected.");
+    console.log("We're connected.");
 } else {
-	console.log("Connection failed.");
+    console.log("Connection failed.");
 }
 ```
 
