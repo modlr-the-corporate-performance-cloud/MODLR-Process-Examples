@@ -8,10 +8,10 @@ First, we need to establish an FTP connection. Using a username and password:
 const client = ftp.Connect("sftp", "example.domain.com", 22, "janedoe", "mypassword");
 ```
 
-If you need a keyfile to connect to the FTP server, use `ftp.ConnectWithKey()`:
+If you need a keyfile to connect to the FTP server, use `ftp.ConnectWithKeyFile()`:
 
 ```javascript
-const client = ftp.ConnectWithKey("sftp", "example.domain.com", 22, "abby", "/path/to/key_file");
+const client = ftp.ConnectWithKeyFile("sftp", "example.domain.com", 22, "abby", "/path/to/key_file");
 ```
 
 To check if the connection succeeded, use the `IsConnected()` method:
