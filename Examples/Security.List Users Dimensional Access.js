@@ -25,7 +25,7 @@ function begin() {
 function data(record) {
 	//this function is called once for each line of data on the second cycle
 	//use this to build dimensions and push data into cubes
-}
+} 
 
 function end() {
 	//this function is called once at the end of the process
