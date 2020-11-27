@@ -6,6 +6,7 @@ Utility processes can be copied into any model so that you can call them from yo
 * Create and maintain a mapping between a time dimension and a separate Year and Month dimension. [Utility.Map Time to Year and Month.js](Utility.Map%20Time%20to%20Year%20and%20Month.js)
 * Export data from a Cube to a database table. [Utility.Export.Cube to Table.js](Utility.Export.Cube%20to%20Table.js)
 * Set Tag Access based on a Parent in a Dimension Hierarchy. [Utility.Access Tag.js](Utility.Access%20Tag.js)
+* Make a One to Many Mapping with one Dimension on each side. [Utility.Make 1 to Many Mapping.js](Utility.Make%201%20to%20Many%20Mapping.js)
 
 
 
