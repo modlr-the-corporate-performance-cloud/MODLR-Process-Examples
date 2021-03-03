@@ -1,6 +1,6 @@
 
 # MODLR-Process-Examples
-This repository hosts a growing collection of sample process scripts for common MODLR functions both in processes and as part of application server side scripts.
+This repository hosts a growing collection of sample process scripts for common [MODLR](https://modlr.co) functions both in processes and as part of application server side scripts. More documentation on Processes can be found at [MODLR Documentation](https://docs.modlr.co)
 
 ## Utility Processes
 Utility processes can be copied into new Processes so that you can call them from your processes and server pages to make development of new models easier.
