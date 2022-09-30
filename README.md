@@ -16,3 +16,9 @@ Process examples serve to teach common development patterns which are handy when
 [Process Performance Tuning](/Examples/Performance-Tuning.md)
 
 [Process for Setting Model Variables](/Examples/Setting-Variables.md)
+
+[FTP](/Examples/FTP.md)
+
+[Security.Check](/Examples/Security.List%20Users%20Dimensional%20Access.js)
+
+[Security.List](/Examples/Security.List%20Users%20Dimensional%20Access.js)
